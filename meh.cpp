@@ -35,7 +35,7 @@ int create()
 			cin >> stud[i].chemistry_grade >> stud[i].physics_grade >> stud[i].math_grade >> stud[i].informatics_grade;
 			stud[i].gpa = (stud[i].physics_grade + stud[i].math_grade + stud[i].informatics_grade + stud[i].chemistry_grade) / 4;
 			fout << stud[i].full_name.first << " " << stud[i].full_name.second << " " << stud[i].birth_date << " " << stud[i].group << " " << stud[i].chemistry_grade << " " << stud[i].physics_grade
-				<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
+			<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
 		}
 	}
 	else cout << "\nВведите корректное число N и повторите попытку.";
@@ -46,19 +46,18 @@ int show_file()
 {
 	ifstream fin("d:\\labs\\lab1_source\\file.txt");
 	int i = 0, j;
-
-	while (fin.get() != EOF)
+	do
 	{
 		fin >> stud[i].full_name.first >> stud[i].full_name.second >> stud[i].birth_date >> stud[i].group >> stud[i].chemistry_grade >>
 			stud[i].physics_grade >> stud[i].math_grade >> stud[i].informatics_grade >> stud[i].gpa;
 
 		i++;
 		j = i;
-	}
+	} while (fin.get() != EOF);
 	for (int i = 0; i < j - 1; i++)
 	{
 		cout << stud[i].full_name.first << " " << stud[i].full_name.second << " " << stud[i].birth_date << " " << stud[i].group << " " << stud[i].chemistry_grade << " " << stud[i].physics_grade
-			<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
+		<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
 	}
 	return 0;
 }
