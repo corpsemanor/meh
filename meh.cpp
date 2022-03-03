@@ -45,25 +45,21 @@ int create()
 int show_file()
 {
 	ifstream fin("d:\\labs\\lab1_source\\file.txt");
-	int i = 0;
-	fin >> stud[i].full_name.first >> stud[i].full_name.second >> stud[i].birth_date >> stud[i].group >> stud[i].chemistry_grade >>
-		stud[i].physics_grade >> stud[i].math_grade >> stud[i].informatics_grade >> stud[i].gpa;
-	/*while (fin.get() != EOF)
-	{
-		if (fin.get() != '\n')
-		{
-			fin >> stud[i].full_name.first >> stud[i].full_name.second >> stud[i].birth_date >> stud[i].group >> stud[i].chemistry_grade >>
-				stud[i].physics_grade >> stud[i].math_grade >> stud[i].informatics_grade >> stud[i].gpa;
-			
-		}
-		else
-		{
-			i++;
-		}
+	int i = 0, j;
 
-	}*/
-	cout << stud[i].full_name.first << " " << stud[i].full_name.second << " " << stud[i].birth_date << " " << stud[i].group << " " << stud[i].chemistry_grade << " " << stud[i].physics_grade
-	<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
+	while (fin.get() != EOF)
+	{
+		fin >> stud[i].full_name.first >> stud[i].full_name.second >> stud[i].birth_date >> stud[i].group >> stud[i].chemistry_grade >>
+			stud[i].physics_grade >> stud[i].math_grade >> stud[i].informatics_grade >> stud[i].gpa;
+
+		i++;
+		j = i;
+	}
+	for (int i = 0; i < j - 1; i++)
+	{
+		cout << stud[i].full_name.first << " " << stud[i].full_name.second << " " << stud[i].birth_date << " " << stud[i].group << " " << stud[i].chemistry_grade << " " << stud[i].physics_grade
+			<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
+	}
 	return 0;
 }
 
