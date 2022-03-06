@@ -49,6 +49,7 @@ int show_file()
 {
 	ifstream fin("d:\\labs\\lab1_source\\file.txt");
 	int i = 0, j;
+	cout << "\nСписок студентов:\n" << endl;
 	do
 	{
 		fin >> stud[i].full_name.first >> stud[i].full_name.second >> stud[i].birth_date >> stud[i].group >> stud[i].chemistry_grade >>
@@ -59,6 +60,7 @@ int show_file()
 	} while (fin.get() != EOF);
 	for (int i = 0; i < j - 1; i++)
 	{
+		cout << i + 1 << ")";
 		cout << stud[i].full_name.first << " " << stud[i].full_name.second << " " << stud[i].birth_date << " " << stud[i].group << " " << stud[i].chemistry_grade << " " << stud[i].physics_grade
 		<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
 	}
@@ -81,15 +83,16 @@ int correct()
 		j = i;
 	} while (fin.get() != EOF);
 
-	cout << "\nCписок:" << endl;
+	cout << "\nCписок:\n" << endl;
 	for (int i = 0; i < j - 1; i++)
 	{
+		cout << i+1 <<")";
 		cout << stud[i].full_name.first << " " << stud[i].full_name.second << " " << stud[i].birth_date << " " << stud[i].group << " " << stud[i].chemistry_grade << " " << stud[i].physics_grade
 			<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
 	}
-	cout << "Введите номер студента, которого нужно корректировать: " << endl;
+	cout << "\nВведите номер студента, которого нужно корректировать: ";
 	cin >> N;
-	cout << "Выберите что нужно откорректировать:\n1.Имя\n2.Дата рождения\n3.Группа.\n4.Оценки." << endl;
+	cout << "\nВыберите что нужно откорректировать:\n1.Имя\n2.Дата рождения\n3.Группа.\n4.Оценки." << endl;
 	cin >> option;
 
 	do
@@ -124,7 +127,7 @@ int correct()
 				case 1:
 				{
 					cout << "\nВведите корректоне значение:";
-					cin >> stud[i].full_name.second>>stud[i].full_name.second;
+					cin >> stud[i].full_name.first >> stud[i].full_name.second;
 					fout << stud[i].full_name.first << " " << stud[i].full_name.second << " " << stud[i].birth_date << " " << stud[i].group << " " << stud[i].chemistry_grade << " " << stud[i].physics_grade
 						<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
 					break;
@@ -164,10 +167,11 @@ int correct()
 		}
 	} while (fin.get() != EOF);
 
-	cout << "\nОткорректированный список:" << endl;
+	cout << "\nОткорректированный список:\n" << endl;
 	i = 0;
 	for (int i = 0; i < j - 2; i++)
 	{
+		cout << i + 1 << ")";
 		cout << stud[i].full_name.first << " " << stud[i].full_name.second << " " << stud[i].birth_date << " " << stud[i].group << " " << stud[i].chemistry_grade << " " << stud[i].physics_grade
 		<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
 	}
@@ -178,6 +182,32 @@ int correct()
 int exit()
 {
 	cout << "\n\t\t\t\t\t\tДо встречи!" << endl;
+	return 0;
+}
+
+int individual()
+{
+	ifstream fin("d:\\labs\\lab1_source\\file.txt");
+	int i = 0, j;
+	cout << "\nРешение:\n\n";
+	do
+	{
+		fin >> stud[i].full_name.first >> stud[i].full_name.second >> stud[i].birth_date >> stud[i].group >> stud[i].chemistry_grade >>
+			stud[i].physics_grade >> stud[i].math_grade >> stud[i].informatics_grade >> stud[i].gpa;
+
+		i++;
+		j = i;
+	} while (fin.get() != EOF);
+	for (int i = 0; i < j - 1; i++)
+	{
+		if ((stud[i].physics_grade == 5 || stud[i].physics_grade == 4) && stud[i].chemistry_grade > 8 && stud[i].math_grade > 8 && stud[i].chemistry_grade > 8 && stud[i].informatics_grade > 8)
+		{
+			cout << stud[i].full_name.first << " " << stud[i].full_name.second << " " << stud[i].birth_date << " " << stud[i].group << " " << stud[i].chemistry_grade << " " << stud[i].physics_grade
+			<< " " << stud[i].math_grade << " " << stud[i].informatics_grade << " " << stud[i].gpa << endl;
+		}
+	}
+
+	showcase();
 	return 0;
 }
 
@@ -195,11 +225,11 @@ void showcase()
 
 	case 3: {correct(); break; }
 
-	case 4: {; break; }
+	case 4: {individual(); break; }
 
 	case 5: {exit(); break; }
 
-	default: {cout << "\nНеверно выбран кейс. Повторите попытку." << endl; break; }
+	default: {cout << "\nНеверно выбран кейс. Повторите попытку." << endl; showcase(); }
 	}
 	cout << endl;
 }
